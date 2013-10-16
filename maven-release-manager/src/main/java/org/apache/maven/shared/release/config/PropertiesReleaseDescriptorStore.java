@@ -37,6 +37,7 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 
+import org.codehaus.plexus.util.StringUtils;
 /**
  * Read and write release configuration and state from a properties file.
  *
@@ -118,6 +119,10 @@ public class PropertiesReleaseDescriptorStore
         if ( config.isCommitByProject() ) //default is false
         {
             properties.setProperty( "commitByProject", "true" );
+        }
+        if ( config.getAdditionalCommittedIncludes() != null )
+        {
+            properties.setProperty( "additionalCommittedIncludes", config.getAdditionalCommittedIncludes() );
         }
         properties.setProperty( "scm.url", config.getScmSourceUrl() );
         if ( config.getScmId() != null )
